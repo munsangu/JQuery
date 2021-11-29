@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Element Access</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+
+<body>
+    <h1>METHOD</h1>
+    <p>아래의 버튼을 누르면 다음 단락에 새로운 텍스트를 설정할 수 있음!</p>
+    <button class="text_btn">New Text</button>
+    <p id="text"></p>
+    <script>
+        $(function () {
+            $("button.text_btn").on("click", function () {
+                var newText = $("h1").html();
+                $("#text").html(newText);
+            });
+        });
+    </script>
+
+    <h2>메소드 체이닝</h2>
+    <ul id="list">
+        <li>첫 번째</li>
+        <li>두 번째</li>
+        <li>세 번째</li>
+        <li>네 번째</li>
+        <li>다섯 번째</li>
+    </ul>
+    <button class="list_btn">선택</button>
+    <script>
+        $(function () {
+            $("button.list_btn").on("click", function () {
+                $("#list").find("li").eq(1).html("두 번째 선택!");
+                $("#list").find("li").eq(3).html("네 번째 선택!");
+            });
+        });
+    </script>
+    <ul id="list2">
+        <li>첫 번째</li>
+        <li>두 번째</li>
+        <li>세 번째</li>
+        <li>네 번째</li>
+        <li>다섯 번째</li>
+    </ul>
+    <button class="list_btn2">선택</button>
+    <script>
+        $(function () {
+            $("button.list_btn2").on("click", function () {
+                $("#list2")
+                    .find("li")
+                    .eq(1).html("두 번째 선택!")
+                    .end()
+                    .eq(3).html("네 번째도 선택!")
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#getter").on("click", function () {
+                var size = "너비는 " + $("#box").width() + "px이고, 높이는 " + $("#box").height() + "px입니다.<br>"
+                $("#text2").html(size);
+            });
+
+            $("#setter").on("click", function () {
+                w = $("#box").width();
+                h = $("#box").height();
+                $("#box").width(w/2).height(h/2);
+
+                var size = "너비는 " + $("#box").width() + "px이고, 높이는 " + $("#box").height() + "px로 변경되었습니다.<br>";
+                $("#text2").html(size);
+            });
+        });
+    </script>
+
+    <h2>width(), height()</h2>
+    <p>아래의 버튼을 누르면 다음 div 요소의 크기를 읽어오거나 줄일 수 있음!</p>
+    <button id="getter">크기 읽어오기!</button>
+    <button id="setter">크기 줄이기!</button><br><br>
+    <div id="box" style="width: 400px; height: 200px; background-color: #129dba;"></div>
+    <p id="text2"></p>
+
+</body>
+
+</html>

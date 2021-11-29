@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery2</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+        $(document).ready( function() {
+            $("#doc").text("문서 전부 로드!");
+        });
+        $(window).ready( function() {
+            $("#win").text("창 전부 로드!");
+        });
+    </script>
+</head>
+
+<body>
+    <h1>문서와 창이 모두 로드되는 시점</h1>
+
+    <iframe src="http://tcpschool.com/" width="100%" height="250px"></iframe>
+    <p id="doc">잠시만 기다려!</p>
+    <p id="win">잠시만 기다려!</p>
+</body>
+
+</html>

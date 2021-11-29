@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <title>JQuery with CSS</title>
+    <script>
+        $(function() {
+            $("p").on("click", function() {
+                $(".1").css("fontSize", "30px");
+                $(".2").css("fontSize", "20px");
+                $(".3").css("fontSize", "10px");
+                $("#4").css("border", "2px solid #129dba").css("fontSize", "30px");
+                $(".5").css("backgroundColor", "#129dba").css("fontSize", "30px").css("color", "#fff");
+            });
+        });
+        $(function() {
+            $("button").on("click", function() {
+                $("img[alt='dog']").attr("src", "./cat2.jpg").attr("alt", "cat2")
+                $("button").text("변환성공").addClass("active")
+            });
+        });
+        $(function() {
+            $(".active").on("click", function() {
+                $("img[alt='cat2']").attr("src", "./dog.jpg").attr("alt", "dog")
+                $("button").text("속성변환").removeClass("active")
+            });
+        });
+    </script>
+    <style>
+        * {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>HTML 태그 선택자</h1>
+    <p>
+        HTML, CSS, <span class="1">Javascript</span>, <span class="2">JQuery</span>,
+        <span class="3">React.js</span>, <span id="4">Vue.js</span>, <span class="5">Node.js</span>
+    </p>
+
+    <h1>속성 선택자</h1>
+    <img src="./dog.jpg" alt="dog">
+    <img src="./cat1.jpg" alt="cat">
+    <br>
+    <button>속성변환</button>
+</body>
+
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQUery with selector</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function() {
+            let items = $("li.lent");
+            $("button.btn_lent").on("click", function() {
+                $("#len").text("저장된 <li> 요소의 총 개수는 "+ items.length +"개 입니다.");
+                $("button.btn_lent").text("계산완료");
+            });
+        });
+
+        $(function() {
+            $("button.btn_locate").on("click", function() {
+                $("li:has(span)").text("<span> 요소를 가지고 있는 아이템!");
+            });
+        });
+
+        $(function() {
+            $("button.btn_check").on("click", function() {
+                $(":checked").next().text("체크됨");
+            });
+        });
+    </script>
+    <style>
+        table {
+            border:1px solid;
+            border-collapse: collapse;
+        }
+        tr {
+            border:1px solid;
+            border-collapse: collapse;
+        }
+        th, td {
+            border:1px solid;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <h1>선택한 요소의 저장</h1>
+    <ul>
+        <li class="lent">첫 번째</li>
+        <li class="lent">두 번째</li>
+        <li class="lent">세 번쨰</li>
+        <li class="lent">네 번쨰</li>
+        <li class="lent">다섯 번째</li>
+    </ul>
+    <button class="btn_lent">선택된 요소의 길이??</button>
+    <p id="len"></p>
+
+
+    <h1>선택한 요소의 필터링</h1>
+    <ol>
+        <li class="locate">아이템</li>
+        <li class="locate"><span>아이템</span></li>
+        <li class="locate">아이템</li>
+        <li class="locate"><span>아이템</span></li>
+        <li class="locate">아이템</li>
+    </ol>
+    <button class="btn_locate">필터링</button>
+
+    <table>
+        <colgroup>
+            <col width="20%">
+            <col width="80%">
+        </colgroup>
+        <caption>필터링 선택자</caption>
+        <thead>
+            <tr>
+                <th>선택자</th>
+                <th>설명</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>:eq(n)</td>
+                <td>선택한 요소 중에서 인덱스가 n인 요소를 선택함.</td>
+            </tr>
+            <tr>
+                <td>:gt(n)</td>
+                <td>선택한 요소 중에서 인덱스가 n보다 큰 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:lt(n)</td>
+                <td>선택한 요소 중에서 인덱스가 n보다 작은 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:even</td>
+                <td>선택한 요소 중에서 인덱스가 짝수인 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:odd</td>
+                <td>선택한 요소 중에서 인덱스가 홀수인 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:first</td>
+                <td>선택한 요소 중에서 첫 번째 요소를 선택함.</td>
+            </tr>
+            <tr>
+                <td>:last</td>
+                <td>선택한 요소 중에서 마지막 요소를 선택함.</td>
+            </tr>
+            <tr>
+                <td>:animated</td>
+                <td>선택한 요소 중에서 애니메이션 효과가 실행 중인 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:header</td>
+                <td>선택한 요소 중에서 h1부터 h6까지의 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:lang(언어)</td>
+                <td>선택한 요소 중에서 지정한 언어의 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:not(선택자)</td>
+                <td>선택한 요소 중에서 지정한 선택자와 일치하지 않는 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:root</td>
+                <td>선택한 요소 중에서 최상위 루트 요소를 선택함.</td>
+            </tr>
+            <tr>
+                <td>:target</td>
+                <td>선택한 요소 중에서 웹 페이지 URI의 fragment 식별자와 일치하는 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:contains(텍스트)</td>
+                <td>선택한 요소 중에서 지정한 텍스트를 포함하는 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:has(선택자)</td>
+                <td>선택한 요소 중에서 지정한 선택자와 일치하는 자손 요소를 갖는 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:empty</td>
+                <td>선택한 요소 중에서 자식 요소를 가지고 있지 않은 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:parent</td>
+                <td>선택한 요소 중에서 자식 요소를 가지고 있는 요소를 모두 선택함.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>Form 요소의 선택</h1>
+    <form>
+        <input type="checkbox" name="lecture" value="HTML"><span>HTML</span><br>
+        <input type="checkbox" name="lecture" value="CSS"><span>CSS</span><br>
+        <input type="checkbox" name="lecture" value="JAVASCRIPT"><span>JAVSCRIPT</span><br>
+        <input type="checkbox" name="lecture" value="REACT"><span>REACT</span><br>
+        <input type="checkbox" name="lecture" value="VUE"><span>VUE</span>
+    </form>
+    <button class="btn_check">필터링</button>
+
+    <table>
+        <colgroup>
+            <col width="20%">
+            <col width="80%">
+        </colgroup>
+        <caption>input 선택자</caption>
+        <thead>
+            <tr>
+                <th>선택자</th>
+                <th>설명</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>:button</td>
+                <td>type 속성값이 "button"인 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:checkbox</td>
+                <td>type 속성값이 "checkbox"인 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:file</td>
+                <td>type 속성값이 "file"인 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:image</td>
+                <td>type 속성값이 "image"인 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:password</td>
+                <td>type 속성값이 "password"인 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:radio</td>
+                <td>type 속성값이 "radio"인 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:reset</td>
+                <td>type 속성값이 "reset"인 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:submit</td>
+                <td>type 속성값이 "submit"인 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:text</td>
+                <td>type 속성값이 "text"인 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:input</td>
+                <td>&ltinput&gt, &lttextarea&gt, &ltselect&gt, &ltbutton&gt요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:checked</td>
+                <td>type 속성값이 "checkbox" 또는 "radio"인 요소 중에서 체크되어 있는 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:selected</td>
+                <td>&ltoption&gt요소 중에서 선택된 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:focus</td>
+                <td>현재 포커스가 가지고 있는 요소를 선택함.</td>
+            </tr>
+            <tr>
+                <td>:disabled</td>
+                <td>비활성화되어있는 요소를 모두 선택함.</td>
+            </tr>
+            <tr>
+                <td>:enabled</td>
+                <td>활성화되어있는 요소를 모두 선택함.</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

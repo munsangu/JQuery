@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <title>OnChange vs OnClick</title>
+    <style>
+        .flag {
+            width: 60px;
+            height: 60px;
+            background: #aaa;
+            border: 3px solid #888;
+            margin: 1em;
+            padding: 1em;
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+            display: inline-block;
+        }
+
+        .flag.on {
+            border-color: #c64;
+            background-color: #e86;
+        }
+    </style>
+
+</head>
+
+<body>
+    <form>
+        <p>
+            <label for="tester">
+                <input type="checkbox" name="tester" id="tester" value="something">
+                Click Me!
+            </label>
+        </p>
+    </form>
+    <p><a href="#" id="testlink">Click me to change the 'checked' property with jQuery</a></p>
+    <p><a href="#" id="testlink2">Click me to manually trigger 'change'</a></p>
+    <p><a href="#" id="testlink3">Click me to manually trigger 'click'</a></p>
+    <div class="flag" id="changeFlag">change</div>
+    <div class="flag" id="clickFlag">click</div>
+    <script>
+        $(':checkbox[name="tester"]').on({
+            click: function (e) {
+                $('#clickFlag').toggleClass('on');
+            },
+            change: function (e) {
+                $('#changeFlag').toggleClass('on');
+            }
+        });
+
+        $('#testlink').click(function () {
+            if (!!$('#tester').prop('checked')) {
+                $('#tester').prop('checked', false);
+            } else {
+                $('#tester').prop('checked', true);
+            }
+        });
+        $('#testlink2').click(function () {
+            $('#tester').change();
+        });
+        $('#testlink3').click(function () {
+            $('#tester').trigger('click');
+        });
+    </script>
+</body>
+
+</html>

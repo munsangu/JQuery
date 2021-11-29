@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Object</title>
+</head>
+
+<body>
+    <script>
+        let person = {
+            name: "IRONMAN",
+            age: 100,
+            birthday: 111111,
+            fulled: function() {
+                return this.age + this.birthday;
+            }
+        }
+
+        document.write(person.name);
+        document.write(person.age);
+        document.write(person.birthday);
+        document.write(person.fulled());
+    </script>
+</body>
+
+</html>
