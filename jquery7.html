@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Element Insert</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <style>
+        * {
+            list-style: none;
+        }
+        table, tr, td, th {
+            border: 1px solid; 
+            border-collapse: collapse;
+        }
+        th {
+            background-color: #129dba;
+            color: #fff;
+        }
+        td {
+            text-align: center;
+        }
+        div {
+            margin: 10px;
+        }
+        .content{
+            border: 2px solid yellow;
+        }
+        .wrapper {
+            border: 2px solid green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>append()</h1>
+    <p>선택한 요소의 '마지막'에 새로운 요소나 콘텐츠를 추가</p>
+    <ul id="list">
+        <li>1 번째</li>
+        <li>2 번째</li>
+        <li>3 번째</li>
+    </ul>
+    <button id="add_btn1">아이템 추가</button>
+    <script>
+        $(function () {
+            var count = 4;
+            $("button#add_btn1").on("click", function () {
+                $("#list").append(`<li>${count} 번째</li>`)
+                count++;
+            });
+        });
+    </script>
+
+    <h1>prepend()</h1>
+    <p>선택한 요소의 '처음'에 새로운 요소나 콘텐츠를 추가</p>
+    <ul>
+        <li class="prepend">1 번째</li>
+        <li class="prepend">2 번째</li>
+        <li class="prepend">3 번째</li>
+    </ul>
+    <button id="add_btn2">아이템 추가</button>
+    <script>
+        $(function () {
+            var count = 1;
+            $("button#add_btn2").on("click", function () {
+                $("li.prepend").prepend(`${count} 번째 추가 `)
+                count++;
+            });
+        });
+    </script>
+
+    <h1>appendTo()</h1>
+    <p>
+        선택한 요소를 '해당 요소의 마지막'에 삽입<br>
+        그 동작은 .append() 메소드와 같지만, 소스(source)와 타겟(target)의 위치가 서로 반대
+    </p>
+    <ul id="list2">
+        <li id="item1">1 번째</li>
+        <li id="item2">2 번째</li>
+        <li id="item3">3 번째</li>
+    </ul>
+    <button id="item_btn1">1 번째 아이템 추가</button>
+    <button id="item_btn2">2 번째 아이템 추가</button>
+    <button id="item_btn3">3 번째 아이템 추가</button>
+    <script>
+        $(function() {
+            $("#item_btn1").on("click", function() {
+                // id가 list2인 요소의 맨 마지막에 id가 item1인 요소를 추가
+                $("#item1").appendTo("#list2");
+            });
+            $("#item_btn2").on("click", function() {
+                // id가 list2인 요소의 맨 마지막에 id가 item2인 요소를 추가
+                $("#item2").appendTo("#list2");
+            });
+            $("#item_btn3").on("click", function() {
+                // id가 list2인 요소의 맨 마지막에 id가 item3인 요소를 추가
+                $("#item3").appendTo("#list2");
+            });
+        });
+    </script>
+
+    <h1>prependTo()</h1>
+    <p>
+        선택한 요소를 '해당 요소의 처음'에 삽입<br>
+        그 동작은 .prepend() 메소드와 같지만, 소스(source)와 타겟(target)의 위치가 서로 반대
+    </p>
+    <ul id="list3">
+        <li>1 번째</li>
+        <li id="item4">2 번째</li>
+        <li>3 번째</li>
+    </ul>
+    <button id="item_btn4">콘텐츠 추가</button>
+    <script>
+        $(function() {
+            var count = 1;
+            $("button#item_btn4").on("click", function() {
+                $(`<b>${count}번째로 추가된 콘텐츠</b> `).prependTo("#item4");
+                count++;
+            });
+        });
+    </script>
+
+    <table>
+        <caption>기존 요소의 내부에 새로운 요소나 콘텐츠를 추가해주는 메소드</caption>
+        <colgroup>
+            <col width="20%">
+            <col width="80%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>메소드</th>
+                <th>설명</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>.append()</td>
+                <td>선택한 요소의 마지막에 새로운 요소나 콘텐츠를 추가</td>
+            </tr>
+            <tr>
+                <td>.prepend()</td>
+                <td>선택한 요소의 처음에 새로운 요소나 콘텐츠를 추가</td>
+            </tr>
+            <tr>
+                <td>.appendTo()</td>
+                <td>선택한 요소를 해당 요소의 마지막에 삽입</td>
+            </tr>
+            <tr>
+                <td>.prependTo()</td>
+                <td>선택한 요소를 해당 요소의 처음에 삽입</td>
+            </tr>
+            <tr>
+                <td>.html()</td>
+                <td>해당 요소의HTML 콘텐츠를 반환하거나 설정</td>
+            </tr>
+            <tr>
+                <td>.text()</td>
+                <td>해당 요소의 텍스트 콘텐츠를 반환하거나 설정</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>before()</h1>
+    <p>선택한 요소의 '바로 앞에' 새로운 요소나 콘텐츠를 추가</p>
+    <table>
+        <tr id="firstRow">
+            <td>첫 번째 셀</td>
+            <td>두 번째 셀</td>
+        </tr>
+    </table>
+    <button id="table_btn">행 추가</button>
+    <script>
+        $(function() {
+            $("#table_btn").on("click", function() {
+                $("#firstRow").before("<tr><td>새로운 행!</td></tr>")
+            });
+        });
+    </script>
+
+    <h1>after()</h1>
+    <p>선택한 요소의 '바로 뒤에' 새로운 요소나 콘텐츠를 추가</p>
+    <table>
+        <tr id="secondRow">
+            <td>첫 번째 셀</td>
+            <td>두 번째 셀</td>
+        </tr>
+    </table>
+    <button id="table_btn2">행 추가</button>
+    <script>
+        $(function() {
+            $("#table_btn2").on("click", function() {
+                $("#secondRow").after("<tr><td>새로운 행!</td></tr>")
+            });
+        });
+    </script>
+
+    <h1>insertBefore()</h1>
+    <p>
+        선택한 요소를 '해당 요소의 앞에' 삽입<br>
+        그 동작은 before() 메소드와 같지만, 소스(source)와 타겟(target)의 위치가 서로 반대
+    </p>
+    <table>
+        <tr>
+            <td>첫번째 셀</td>
+            <td id="secondColumn">두번째 셀</td>
+        </tr>
+    </table>
+    <button id="table_btn3">셀 추가</button>
+    <script>
+        $(function() {
+            $("#table_btn3").on("click", function() {
+                $("<td>새로운 셀</td>").insertBefore("#secondColumn");
+            });
+        });
+    </script>
+
+    <h1>insertAfter()</h1>
+    <p>
+        선택한 요소를 '해당 요소의 뒤에' 삽입<br>
+        그 동작은 .after() 메소드와 같지만, 소스(source)와 타겟(target)의 위치가 서로 반대
+    </p>
+    <table>
+        <tr>
+            <td>첫번째 셀</td>
+            <td id="secondColumn2">두번째 셀</td>
+        </tr>
+    </table>
+    <button id="table_btn4">셀 추가</button>
+    <script>
+        $(function() {
+            $("#table_btn4").on("click", function() {
+                $("<td>새로운 셀</td>").insertAfter("#secondColumn2");
+            });
+        });
+    </script>
+
+    <table>
+        <caption>기존 요소의 외부에 새로운 요소나 콘텐츠를 추가해주는 메소드</caption>
+        <colgroup>
+            <col width="20%">
+            <col width="80%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>메소드</th>
+                <th>설명</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>.before()</td>
+                <td>선택한 요소의 바로 앞에 새로운 요소나 콘텐츠를 추가</td>
+            </tr>
+            <tr>
+                <td>.after()</td>
+                <td>선택한 요소의 바로 뒤에 새로운 요소나 콘텐츠를 추가</td>
+            </tr>
+            <tr>
+                <td>.insertBefore()</td>
+                <td>선택한 요소를 해당 요소의 앞에 삽입</td>
+            </tr>
+            <tr>
+                <td>.insertAfter()</td>
+                <td>선택한 요소를 해당 요소의 뒤에 삽입</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>wrap()</h1>
+    <button class="content_btn">요소 추가</button>
+    <div class="content">첫 번째</div>
+    <div class="content">두 번째</div>
+    <script>
+        $(function() {
+            $(".content_btn").on("click", function() {
+                $(".content").wrap("<div class='wrapper'></div>")
+            });
+        });
+    </script>
+
+    <h1>wrapAll()</h1>
+    <button class="content_btn2">요소 추가</button>
+    <div class="content2" style="border: 1px solid yellow;">첫 번째</div>
+    <div class="content2" style="border: 1px solid yellow;">두 번째</div>
+    <script>
+        $(function() {
+            $(".content_btn2").on("click", function() {
+                $(".content2").wrapAll("<div class='wrapper'></div>")
+            });
+        });
+    </script>
+
+    <h1>wrapInner()</h1>
+    <button class="content_btn3">요소 추가</button>
+    <div class="content3" style="border: 1px solid yellow;">첫 번째</div>
+    <div class="content3" style="border: 1px solid yellow;">두 번째</div>
+    <script>
+        $(function() {
+            var count = 0;
+            $(".content_btn3").on("click", function() {
+                $(".content3").wrapInner("<div class='wrapper'></div>")
+                count++;
+                if(count > 10) {
+                    $(".content3").removeClass("content3")
+                }
+            });
+        });
+    </script>
+
+    <table>
+        <caption>기존 요소를 포함하는 새로운 요소를 추가해주는 메소드</caption>
+        <colgroup>
+            <col width="20%">
+            <col width="80%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>메소드</th>
+                <th>설명</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>.wrap()</td>
+                <td>선택한 요소를 포함하는 새로운 요소를 추가</td>
+            </tr>
+            <tr>
+                <td>.wrapAll()</td>
+                <td>선택한 모든 요소를 포함하는 새로운 요소를 추가</td>
+            </tr>
+            <tr>
+                <td>.wrapInner()</td>
+                <td>선택한 요소에 포함되는 새로운 요소를 추가</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
