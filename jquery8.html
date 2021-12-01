@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jQuery Element Clone</title>
+    <title>jQuery Element Clone & Remove</title>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
 
@@ -47,8 +47,108 @@
 
     <h1>replaceWith()</h1>
     <p>
-        
+        선택한 요소를 지정된 요소로 대체<br>
+        이 메소드는 인수로 HTML 코드 형식의 문자열이나 제이쿼리 객체, HTML DOM 요소, 배열 등을 전달받을 수 있음<br>
+        또한, 선택한 요소를 대체할 수 있는 컨텐츠를 반환하는 함수를 인수로 전달받을 수도 있음<br>
+        지정된 요소로 대체되어 제거된 기존 요소를 반환
     </p>
+    <button id="replace_btn2">아이템 대체</button>
+    <ul>
+        <li class="item2" id="first2">첫 번째</li>
+        <li class="item2" id="second2">두 번째</li>
+        <li class="item2" id="third2">세 번째</li>
+    </ul>
+    <script>
+        $(function() {
+            $("#replace_btn2").on("click", function() {
+                // class가 item2인 모든 요소를 id가 first2인 요소로 대체
+                $(".item2").replaceWith($("#first2"));
+            });
+        });
+    </script>
+
+    <h1>remove()</h1>
+    <p>
+        선택한 요소를 DOM 트리에서 삭제<br>
+        이때 삭제되는 요소와 연관된 제이쿼리 데이터나 이벤트도 모두 함께 삭제됨
+    </p>
+    <button id="remove_btn">요소 삭제</button>
+    <div>
+        <div class="content first">첫 번째</div>
+        <div class="content second">두 번째</div>
+        <div class="content third">세 번째</div>
+    </div>
+    <script>
+        $(function() {
+            $("#remove_btn").on("click", function() {
+                $(".content").remove(".first, .second");
+            });
+        });
+    </script>
+
+    <h1>detach()</h1>
+    <p>
+        선택한 요소를 DOM 트리에서 삭제<br>
+        이때 삭제되는 요소와 연관된 제이쿼리 데이터나 이벤트는 삭제되지 않고, 계속 유지됨<br>
+        append(), prepend()와 같은 메소드에 인수를 전달하면 삭제한 요소 복구 가능
+    </p>
+    <button id="detach_btn">요소 삭제</button>
+    <button id="restore_btn">요소 복구</button>
+    <div id="container">
+        <div>첫 번째</div>
+        <div class="content2">두 번째</div>
+        <div class="content2">세 번째</div>
+    </div>
+    <script>
+        $(function() {
+            var data;
+            $("#detach_btn").on("click", function() {
+                data = $(".content2").detach();
+            })
+            $("#restore_btn").on("click", function() {
+                $("#container").append(data)
+            })
+        })
+    </script>
+
+    <h1>empty()</h1>
+    <p>
+        선택한 요소의 자식 요소를 모두 삭제<br>
+        선택된 요소 그 자체는 삭제되지 않음
+    </p>
+    <button id="empty_btn">자식 삭제</button>
+    <br>
+    <br>
+    <div id="container2" style="border: 3px solid teal; padding: 10px;">
+        <div>첫 번째</div>
+        <div>두 번째</div>
+        <div>세 번째</div>
+    </div>
+    <script>
+        $(function() {
+            var data2 
+            $("#empty_btn").on("click", function() {
+                data2 = $("#container2").empty()
+            })
+        })
+    </script>
+
+    <h1>unwrap()</h1>
+    <p>선택한 요소의 부모 요소를 삭제</p>
+    <button id="unwrap_btn">부모 요소 삭제</button>
+    <br><br>
+    <div id="container3" style="border: 2px solid orange;">
+        <div style="border: 2px solid green; margin: 10px;"><span>첫 번째</span></div>
+        <div style="border: 2px solid green; margin: 10px;"><span>두 번째</span></div>
+        <div style="border: 2px solid green; margin: 10px;"><span>세 번째</span></div>
+    </div> 
+    <script>
+        $(function() {
+            $("#unwrap_btn").on("click", function() {
+                $("span").unwrap()
+            })
+        })
+    </script>
 </body>
 
 </html>
