@@ -353,12 +353,12 @@
 
     <h1>contents()</h1>
     <p>선택한 요소의 자식 요소를 텍스트 노드와 주석 노드까지 모두 포함하여 선택</p>
-    <button id="content_btn">a 요소의 배경색 변경</button><br><br>
-    <iframe src="http://tcpschool.com" style="width: 95%; height: 400px;"></iframe>
+    <button id="content_btn">li 요소의 배경색 변경</button><br><br>
+    <iframe src="http://127.0.0.1:5500/jquery8.html" style="width: 95%; height: 400px;"></iframe>
     <script>
         $(function() {
             $("#content_btn").on("click", function() {
-                $("iframe").contents().find("a").css("backgroundColor", "blue")
+                $("iframe").contents().find("li").css("backgroundColor", "blue")
             })
         })
     </script>

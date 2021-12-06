@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Element Dimension</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <style>
+        table, tr, td, th {
+            border: 1px solid; 
+            border-collapse: collapse;
+        }
+        th {
+            background-color: #129dba;
+            color: #fff;
+        }
+        td {
+            text-align: center;
+        }
+
+        #divBox {
+            width: 300px;
+            height: 100px;
+            border: 2px solid orange;
+        }
+
+        #divBox2 {
+            width: 400px;
+            height: 110px;
+            border: 5px solid orange;
+            padding: 10px;
+            margin: 15px;
+        }
+    </style>
+</head>
+
+<body>
+<table>
+    <caption>요소의 크기</caption>
+    <colgroup>
+        <col width="40%">
+        <col width="60%">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>메소드</th>
+            <th>반환값</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>.width(), height()</td>
+            <td>요소의 크기</td>
+        </tr>
+        <tr>
+            <td>.innerWidth(), .innerHeight()</td>
+            <td>요소의 크기 + 패딩의 크기</td>
+        </tr>
+        <tr>
+            <td>.outerWidth(), .outerHeight()</td>
+            <td>요소의 크기 + 패딩의 크기 + 테두리의 크기</td>
+        </tr>
+        <tr>
+            <td>.outerWidth(true), .outerHeight(true)</td>
+            <td>요소의 크기 + 패딩의 크기 + 테두리의 크기 + 마진의 크기</td>
+        </tr>
+    </tbody>
+</table>
+
+<h1>width(), height()</h1>
+<button id="wh_btn">요소의 크기 정보</button><br><br>
+<div id="divBox">
+    <p id="text"></p>
+</div>
+<script>
+    $(function() {
+        $("#wh_btn").on("click", function() {
+            var str = "이 div 요소의 ";
+            str += "너비는 "+ $("#divBox").width() + "px이고, <br>"
+            str += "높이는 "+ $("#divBox").height() + "px입니다."
+            $("#text").html(str)
+        })
+    })
+</script>
+<br><br>
+<button id="browser_btn">브라우저 및 문서의 크기 정보</button>
+<p>브라우저의 크기를 조절해가며 위의 버튼 누르기</p>
+<p id="text2"></p>
+<script>
+    $(function() {
+        $("#browser_btn").on("click", function() {
+            var str = ""
+            str += "브라우저 뷰포트의 크기는 " + $(window).width() + " * " + $(window).height() + "입니다.<br>"
+            str += "HTML 문서의 크기는 " + $(document).width() + " * " + $(document).height() + "입니다."
+            $("#text2").html(str)
+        })
+    })
+</script>
+<br><br>
+<button id="resize_btn">요소의 크기 변경</button>
+<script>
+$(function() {
+    $("#resize_btn").on("click", function() {
+        $("#divBox").width(600).height(600).css("backgroundColor", "orange")
+    })
+})
+</script>
+<br><br>
+<button id="info_btn">요소의 크기 정보</button>
+<div id="divBox2">
+    <p id="text3"></p>
+</div>
+<script>
+    $(function() {
+        $("#info_btn").on("click", function() {
+            var str = "이 div 요소의 "
+            str += "크기는 " + $("#divBox2").width() + " * " + $("#divBox2").height() + "이고<br>"
+            str += "패딩 영역을 포함한 크기는 " + $("#divBox2").innerWidth() + " * " + $("#divBox2").innerHeight() + "이고<br>"
+            str += "테두리까지 포함한 크기는 " + $("#divBox2").outerWidth() + " * " + $("#divBox2").outerHeight() + "이고<br>"
+            str += "마진 영역까지 포함한 크기는 "  + $("#divBox2").outerWidth(true) + " * " + $("#divBox2").outerHeight(true)
+            $("#text3").html(str)
+        })
+    })
+</script>
+</body>
+
+</html>

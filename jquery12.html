@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Element Position</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <style>
+        #divBox {
+            width: 100px;
+            height: 50px;
+            border: 1px solid lightgray;
+            margin: 10px;
+        }
+        #para {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="position_btn">요소의 위치 정보</button>
+    <button id="position_btn2">요소의 위치 변경</button>
+    <p id="text"></p>
+    <div id="divBox">
+        <p id="para">p요소</p>
+    </div>
+    <script>
+        $(function() {
+            $("#position_btn").on("click", function() {
+                var paraPostion = $("#para").offset() // id가 para인 요소의 위치 정보를 저장
+                var str = "p 요소의 위치는<br>"
+                str += "left가 " + paraPostion.left + "px이고, "
+                str += "top이 " + paraPostion.top + "px"
+                $("#text").html(str)
+            })
+            $("#position_btn2").on("click", function() {
+                $("#para").offset({top: 200, left: 100})
+                var paraPostion = $("#para").offset() 
+                var str = "p 요소의 위치는<br>"
+                str += "left가 " + paraPostion.left + "px이고, "
+                str += "top이 " + paraPostion.top + "px"
+                $("#text").html(str)
+            })
+        })
+    </script>
+</body>
+
+</html>

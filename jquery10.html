@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Filtering Method</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+
+<body>
+    <h1>first(), last()</h1>
+    <p>first()는 선택한 요소 중에서 첫번째 요소를 선택<br>last()는 선택한 요소 중에서 마지막 요소를 선택</p>
+    <button id="first_btn">first()</button>
+    <button id="last_btn">last()</button>
+    <ul>
+        <li>첫 번째</li>
+        <li>두 번쨰</li>
+        <li>세 번째</li>
+        <li>네 번째</li>
+    </ul>
+    <script>
+        $(function() {
+            $("#first_btn").on("click", function() {
+                $("li").first().css({"border":"2px dashed green"})
+            })
+            $("#last_btn").on("click", function() {
+                $("li").last().css({"border":"2px dashed red"})
+            })
+        })
+    </script>
+
+    <h1>eq()</h1>
+    <p>
+        선택한 요소 중에서 전달받은 인덱스에 해당하는 요소를 선택<br>
+        선택한 요소 집합의 맨 처음 요소를 인덱스 0으로 놓고, 앞에서부터 검색<br>
+        음의 정수도 인수로 전달받을 수 있는데, 이 경우 맨 마지막 요소가 -1
+    </p>
+    <button id="eq_btn">eq(1)</button>
+    <button id="eq_btn2">eq(-1)</button>
+    <script>
+        $(function() {
+            $("#eq_btn").on("click", function() {
+                $("li").eq(1).css({"border":"2px dashed yellow"})
+            })
+            $("#eq_btn2").on("click", function() {
+                $("li").eq(-1).css({"border":"2px dashed blue"})
+            })
+        })
+    </script>
+
+    <h1>filter()</h1>
+    <p>
+        선택한 요소 중에서 전달받은 선택자에 해당하거나, 함수 호출의 결과가 참(true)인 요소를 모두 선택<br>
+        이 메소드는 인수로 선택자나 제이쿼리 객체, HTML DOM 요소 등을 전달받을 수 있음<br>
+        또한, 요소 집합의 각 요소를 검사할 수 있는 함수를 전달할 수도 있음
+    </p>
+    <button id="odd_btn">인덱스가 홀수인 요소</button>
+    <script>
+        $(function() {
+            $("#odd_btn").on("click", function() {
+                $("li").filter(":even").css({"border":"2px dotted pink"})
+                $("li").filter(":odd").css({"border":"2px dotted skyblue"})
+            })
+        })
+    </script>
+
+    <h1>not()</h1>
+    <h3>&lt123&gt</h3>
+    <p>선택한 요소 중에서 전달받은 선택자에 해당하거나, 함수 호출의 결과가 참(true)인 요소를 제외한 나머지 요소를 모두 선택<br>filter()와 반대<br>지정한 숫자는 어디든 포함</p>
+    <button id="not_btn">인덱스가 4보다 크지 않은 요소</button>
+    <button id="not_btn2">인덱스가 4보다 작지 않은 요소</button>
+    <br><br>
+    <table border="1">
+        <tr>
+          <th>Company</th>
+          <th>Contact</th>
+          <th>Country</th>
+        </tr>
+        <tr>
+          <td>Alfreds Futterkiste</td>
+          <td>Maria Anders</td>
+          <td>Germany</td>
+        </tr>
+        <tr>
+          <td>Berglunds snabbköp</td>
+          <td>Christina Berglund</td>
+          <td>Sweden</td>
+        </tr>
+        <tr>
+          <td>Centro comercial Moctezuma</td>
+          <td>Francisco Chang</td>
+          <td>Mexico</td>
+        </tr>
+        <tr>
+          <td>Ernst Handel</td>
+          <td>Roland Mendel</td>
+          <td>Austria</td>
+        </tr>
+        <tr>
+          <td>Island Trading</td>
+          <td>Helen Bennett</td>
+          <td>UK</td>
+        </tr>
+        <tr>
+          <td>Königlich Essen</td>
+          <td>Philip Cramer</td>
+          <td>Germany</td>
+        </tr>
+        <tr>
+          <td>Laughing Bacchus Winecellars</td>
+          <td>Yoshi Tannamuri</td>
+          <td>Canada</td>
+        </tr>
+       <tr>
+          <td>Magazzini Alimentari Riuniti</td>
+          <td>Giovanni Rovelli</td>
+          <td>Italy</td>
+        </tr>
+        <tr>
+          <td>North/South</td>
+          <td>Simon Crowther</td>
+          <td>UK</td>
+        </tr>
+      </table>
+    
+    <script>
+        $(function() {
+            $("#not_btn").on("click", function() {
+                $("tr").not(":gt(4)").css("backgroundColor", "green")
+            })
+            $("#not_btn2").on("click", function() {
+                $("tr").not(":lt(4)").css("backgroundColor", "red")
+            })
+        })
+    </script>
+
+
+    <h1>has()</h1>
+    <p>선택한 요소 중에서 전달받은 선택자에 해당하는 요소를 자손 요소로 가지고 있는 요소를 모두 선택</p>
+    <button id="has_btn">자손 요소로 span 요소를 가지고 있는 요소</button>
+    <ul>
+        <li><span>첫 번째</span></li>
+        <li><span>두 번째</span></li>
+        <li>세 번째</li>
+        <li>네 번째</li>
+    </ul>
+    <script>
+        $(function() {
+            $("#has_btn").on("click", function() {
+                $("li").has("span").css({"border":"2px dotted gray"})
+            })
+        })
+    </script>
+    
+    <h1>is()</h1>
+    <p>선택한 요소 중에서 전달받은 선택자에 해당하는 요소가 하나라도 존재하면 참을 반환</p>
+    <button id="is_btn">span 요소의 조상 요소에는 ul 요소도 존재하는가?</button>
+    <p id="text"></p>
+    <ul>
+        <li><span class="is">첫 번째</span></li>
+        <li><span class="is">두 번째</span></li>
+        <li>세 번째</li>
+        <li>네 번째</li>
+    </ul>
+    <script>
+        $(function() {
+            $("#is_btn").on("click", function() {
+                if($("span.is").parents().is("ul")) {
+                    $("#text").html("span 요소의 조상 요소에는 ul 요소도 존재")
+                }
+            })
+        })
+    </script>
+
+    <h1>map()</h1>
+    <p>선택한 요소 집합의 각 요소마다 지정한 콜백 함수를 실행하고, 그 반환값으로 구성된 제이쿼리 객체를 반환</p>
+    <button id="map_btn">li 요소의 모든 id 값을 출력</button>
+    <p id="text2"></p>
+    <ul>
+        <li class="map_test" id="one">첫 번째</li>
+        <li class="map_test" id="two">두 번째</li>
+        <li class="map_test" id="three">세 번째</li>
+        <li class="map_test" id="four">네 번째</li>
+    </ul>
+    <script>
+        $(function() {
+            $("#map_btn").on("click", function() {
+                // 선택한 <li>요소마다 콜백 함수를 실행하여 각 <li>요소의 id값을 반환
+                var ids = $("li.map_test").map(function() {
+                    return this.id
+                })
+                .get() // 반환된 모든 id 값을 하나의 배열로 반환
+                .join() // 배열의 모든 요소를 쉼표(,)로 구분하는 하나의 문자열로 반환
+                $("#text2").html(ids)
+            })
+        })
+    </script>
+
+    <h1>slice()</h1>
+    <p>선택한 요소 중에서 전달받은 인덱스 범위에 해당하는 요소만을 선택</p>
+    <button id="slice_btn">인덱스가 1 이상인 요소</button>
+    <ul>
+        <li class="slice_test">첫 번째</li>
+        <li class="slice_test">두 번째</li>
+        <li class="slice_test">세 번째</li>
+        <li class="slice_test">네 번째</li>
+    </ul>
+    <script>
+        $(function() {
+            $("#slice_btn").on("click", function() {
+                $("li.slice_test").slice(1).css({"border":"2px solid navy"})
+            })
+        })
+    </script>
+</body>
+
+</html>
