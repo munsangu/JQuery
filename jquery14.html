@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Class</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <style>
+        .lined {
+            text-decoration: line-through;
+            color: magenta;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>addClass(), removeClass(), toggleClass(), hasClass()</h1>
+    <p>addClass(): 선택한 요소에 인수로 전달받은 클래스를 추가</p>
+    <p>removeClass(): 선택한 요소에 인수로 전달받은 클래스를 제거</p>
+    <p>toggleClass(): 선택한 요소에 클래스가 없으면 인수로 전달받은 클래스를 추가, 전달받은 클래스가 추가되어 있으면 제거</p>
+    <p>hasClass(): 인수로 전달받은 값이 선택한 요소의 클래스 이름과 일치하는지를 확인</p>
+    <button id="addBtn">ADD Class</button>
+    <button id="removeBtn">REMOVE Class</button>
+    <button id="toggleBtn">Toggle Class</button>
+    <button id="hasBtn">Has Class</button>
+    <p id="text"></p>
+    <p id="first">이 단락에 클래스를 추가</p>
+    <p>이 단락은 고정</p>
+    <p id="third">이 단락에 클래스 추가</p>
+    <script>
+        $(function() {
+            $("#addBtn").on("click", function() {
+                $("#first, #third").addClass("lined")
+            })
+            $("#removeBtn").on("click", function() {
+                $("#first, #third").removeClass("lined")
+            })
+            $("#toggleBtn").on("click", function() {
+                $("#first, #third").toggleClass("lined")
+            })
+            $("#hasBtn").on("click", function() {
+                var result = $("#first, #third").hasClass("lined")
+                $("#text").html(result)
+            })
+        })
+    </script>
+</body>
+
+</html>

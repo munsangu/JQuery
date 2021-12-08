@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Effect</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+
+<body>
+<h1>show(), hide(), toggle()</h1>
+<p>선택한 요소를 나타나게 하는 것(show)과 순간적으로 사라지게 하는 것(hide)</p>
+<button id="showBtn">Show</button>
+<button id="hideBtn">Hide</button>
+<button id="toggleBtn">Toggle</button>
+<p id="text">이 단락이 ON / OFF</p>
+<script>
+    $(function() {
+        $("#showBtn").on("click", function() {
+            $("#text").show(2000)
+        })
+        $("#hideBtn").on("click", function() {
+            $("#text").hide("fast")
+        })
+        $("#toggleBtn").on("click", function() {
+            $("#text").toggle("slow")
+        })
+    })
+</script>
+<h1>fadeIn(), fadeOut(), fadeToggle(), fadeTo()</h1>
+<p>CSS opacity 변경</p>
+<button id="fadeIn">Fade In</button>
+<button id="fadeOut">Fade Out</button>
+<button id="fadeToggle">Fade Toggle</button>
+<button id="fadeTo">Fade To</button>
+<div id="divBox" class="divBox1" style="width: 100px; height: 100px; background-color: mediumpurple; border: 5px dotted firebrick; margin-top: 20px;"></div>
+<div id="divBox" class="divBox2" style="width: 100px; height: 100px; background-color: mediumpurple; border: 5px dotted firebrick; margin-top: 20px;"></div>
+<div id="divBox" class="divBox3" style="width: 100px; height: 100px; background-color: mediumpurple; border: 5px dotted firebrick; margin-top: 20px;"></div>
+<script>
+    $(function() {
+        $("#fadeIn").on("click", function() {
+            $("#divBox").fadeIn("slow")
+        })
+        $("#fadeOut").on("click", function() {
+            $("#divBox").fadeOut(2000)
+        })
+        $("#fadeToggle").on("click", function() {
+            $("#divBox").fadeToggle(1000)
+        })
+        $("#fadeTo").on("click", function() {
+            $(".divBox1").fadeTo(2000, .2)
+            $(".divBox2").fadeTo(2000, .5)
+            $(".divBox3").fadeTo(2000, .8)
+        })
+    })
+</script>
+
+<h1>slideUp(), slideDown(), slideToggle()</h1>
+<button id="slideUp">Slide Up</button>
+<button id="slideDown">Slide Down</button>
+<button id="slideToggle">Slide Toggle</button>
+<div id="divBox2" style="width: 100px; height: 100px; background-color: mediumpurple; border: 5px dotted firebrick; margin-top: 20px;"></div>
+<script>
+    $(function() {
+        $("#slideUp").on("click", function() {
+            $("#divBox2").slideUp(2000)
+        })
+        $("#slideDown").on("click", function() {
+            $("#divBox2").slideDown("fast")
+        })
+        $("#slideToggle").on("click", function() {
+            $("#divBox2").slideToggle(1000)
+        })
+    })
+</script>
+
+<h1>delay()</h1>
+<button id="startBtn">Start Effect</button>
+<div id="divBox3" style="width: 100px; height: 100px; background-color: mediumpurple; border: 5px dotted firebrick; margin-top: 20px;"></div>
+<script>
+    $(function() {
+        $("#startBtn").on("click", function() {
+            $("#divBox3").fadeOut(1000).delay(1000).fadeIn(3000)
+        })
+    })
+</script>
+
+<h1>stop(), finish()</h1>
+<p>stop: 선택한 요소에서 실행 중인 모든 이펙트 효과를 즉시 중시</p>
+<p>finish: 선택한 요소가 포함된 큐까지 제거하여 모든 이펙트 효과를 종료시킴</p>
+<button id="toggleBtn2">Start Effect</button>
+<button id="stopBtn2">Stop Effect</button>
+<button id="finishBtn3">Finish Effect</button>
+<div id="divBox4" style="width: 100px; height: 100px; background-color: mediumpurple; border: 5px dotted firebrick; margin-top: 20px;"></div>
+<script>
+    $(function() {
+        $("#toggleBtn2").on("click", function() {
+            $("#divBox4").slideToggle(2000)
+        })
+        $("#stopBtn2").on("click", function() {
+            $("#divBox4").stop()
+        })
+        $("#finishBtn3").on("click", function() {
+            $("#divBox4").finish()
+        })
+    })
+</script>
+
+<h1>jQuery.fx</h1>
+<p>이펙트 효과가 구현되는 방법을 제어</p>
+<ol>
+    <li>jQuery.fx.speeds: 밀리초에 해당하는 slow(600), normal(400), fast(200) 등의 값을 가지고 이펙트 효과의 속도를 나타냄</li>
+    <li>jQuery.fx.interval: 이펙트 효과가 보여지는 동안의 초당 프레임 수를 나타냄</li>
+    <li>jQuery.fx.off: 모든 이펙트 효과를 사용할 수 없도록 비활성화시킴</li>
+</ol>
+<button id="toggleBtn5">Toggle of Effect</button>
+<button id="setBtn">Change of Effect's Speed</button>
+<button id="forbidBtn">Ban Effect</button>
+<div id="divBox5" style="width: 100px; height: 100px; background-color: mediumpurple; border: 5px dotted firebrick; margin-top: 20px;"></div>
+<script>
+    $(function() {
+        $("#toggleBtn5").on("click", function() {
+            $("#divBox5").slideToggle("fast")
+        })
+        $("#setBtn").on("click", function() {
+            jQuery.fx.speeds.fast = 1000
+        })
+        $("#forbidBtn").on("click", function() {
+            jQuery.fx.off = true;
+        })
+    })
+</script>
+
+<h1>animate()</h1>
+<p>$(선택자).animate(프로퍼티,[지속시간],[시간당속도함수],[콜백함수])</p>
+<ol>
+    <li>프로퍼티: 필수값, 이펙트 효과를 구성할 CSS 속성을 정의</li>
+    <li>지속시간: 이펙트 효과가 지속될 시간을 전달</li>
+    <li>시간당속도함수(easing function): 이펙트 효과의 시간당 속도를 전달</li>
+    <li>콜백 함수: 이펙트 효과의 동작이 완료된 후에 실행할 함수</li>
+</ol>
+<button id="animate_btn">Start Effect</button>
+<p id="text10">이펙트효과가 모두 끝나면 변경될 텍스트</p>
+<div id="divBox6" style="width: 100px; height: 100px; background-color: mediumpurple; border: 5px dotted firebrick; margin-top: 20px; position: absolute;"></div>
+<script>
+    $(function() {
+        $("#animate_btn").on("click", function() {
+            $("#divBox6").animate(
+                {
+                    left: "+=100",
+                    opacity: .2
+                }, 500, function() {
+                    $("#text10").html("사용자 정의 이펙트가 실행됨")
+                }
+            )
+        })
+    })
+</script>
+
+<h2>animate() - 미리 정의된 값 사용: slow, hide, toggle</h2>
+<button id="defineBtn">Start Effect</button>
+<div id="divBox7" style="width: 100px; height: 100px; background-color: mediumpurple; border: 5px dotted firebrick; margin-top: 20px; position: absolute; left: 200px;"></div>
+<script>
+    $(function() {
+        $("#defineBtn").on("click", function() {
+            $("#divBox7").animate({
+                height: "toggle"
+            })
+        })
+    })
+</script>
+
+</body>
+
+</html>

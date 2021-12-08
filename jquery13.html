@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Style</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+
+<body>
+    <h1>css()</h1>
+    <p>선택한 요소 집합의 첫 번째 요소의 스타일 속성값을 반환하거나, 선택한 요소의 스타일 속성을 인수로 전달받은 값으로 설정</p>
+    <button id="css_btn">스타일설정</button>
+    <p class="context">모든 단락의 CSS 스타일 변경</p>
+    <p id="text"></p>
+    <script>
+        $(function() {
+            $("#css_btn").on("click", function() {
+                $("p.context").css("fontSize", "25px")
+                $("p#text").css("fontSize", "25px")
+                $("#text").html($("p.context").css("fontSize"))
+            })
+        })
+    </script>
+    <button id="css_btn2">스타일 설정</button>
+    <span>이 단락에 여러 CSS 스타일 적용</span>
+    <script>
+        $(function() {
+            $("#css_btn2").on("click", function() {
+                $("span").css({
+                    fontSize: "25px",
+                    backgroundColor: "orange"
+                })
+            })
+        })
+    </script>
+    <br><br>
+    <button id="font_size">글자 크기 변경</button>
+    <button id="background_color">배경색 변경</button>
+    <pre style="border: 5px dotted purple;">
+                   이 단락에 여러 CSS 스타일 적용
+    </pre>
+    <script>
+        $(function() {
+            $("#font_size").on("click", function() {
+                $("pre").css("fontSize", "25px")  // Javascript & JQuery (camelCase)
+            })
+            $("#background_color").on("click", function() {
+                $("pre").css("background-color", "red") // JQuery (dashCase<->)
+            })
+        })
+    </script>
+
+    <h1>attr(), removeAttr()</h1>
+    <p>선택한 요소 집합의 첫번째 요소의 지정된 속성값을 반환하거나, 선택한 요소의 지정된 속성을 전달받은 값으로 설정</p>
+    <button id="setBtn">속성값 설정</button>
+    <button id="removeBtn">속성값 제거</button>
+    <p>이 <span id="word">단어</span>에 title 속성 설정</p>
+    <p>아래 버튼을 누른 후 단어 위로 마우스 이동해보기</p>
+    <script>
+        $(function() {
+            $("#setBtn").on("click", function() {
+                $("#word").attr("title", "JQuery로 넣은 title").css("color", "pink")
+            })
+            $("#removeBtn").on("click", function() {
+                $("#word").removeAttr("title").css("color", "brown")
+            })
+        })
+    </script>
+
+    <h1>prop(), removeProp()</h1>
+    <p>선택한 요소 집합의 첫번째 요소의 지정된 프로퍼티값(checked, 등등)을 반환하거나, 선택한 요소의 지정된 프로퍼티를 전달받은 값으로 설정</p>
+    <button id="setBtn2">JQuery에 프로퍼티 값 설정</button>
+    <button id="removeBtn2">프로퍼티 제거</button>
+    <form action="">
+        <input type="checkbox" name="lecture" value="html" checked> HTML <br>
+        <input type="checkbox" name="lecture" value="jquery"> JQuery
+    </form>
+    <script>
+        $(function() {
+            $("#setBtn2").on("click", function() {
+                $("input[value='jquery']").prop({
+                    checked: true
+                })
+            })
+            $("#removeBtn2").on("click", function() {
+                $("input[value='jquery']").removeProp("checked")
+            })
+        })
+    </script>
+
+    <h2>속성(attribute) vs 프로퍼티(property)</h2>
+    <p>속성: HTML 문서에 존재하고 값이 변하지 않음</p>
+    <p>프로퍼티: HTML DOM 트리에 존재하고 그 값이 변할 수 있음</p>
+    <h2>attr() vs prop()</h2>
+    <input type="checkbox" id="check" name="lecture" checked="checked">
+    <label for="check">체크박스 체크!</label>
+    <p id="text2"></p>
+    <script>
+        $(function() {
+            $("#check").change(function() {
+                $("#text2").html("checked 속성의 속성값 : "+$(this).attr("checked") + "<br>checked 프로퍼티 값 : " + $(this).prop("checked"))
+            }).change()
+        })
+    </script>
+</body>
+
+</html>

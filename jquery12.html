@@ -13,10 +13,26 @@
             height: 50px;
             border: 1px solid lightgray;
             margin: 10px;
+            padding: 5px;
         }
+
         #para {
             font-weight: bold;
-            margin-top: 15px;
+            margin-left: 15px;
+        }
+
+        .container * {
+            display: block;
+            border: 1px solid lightgreen;
+            padding: 5px;
+            margin: 15px;
+        }
+
+        #divBox2 {
+            width: 50px;
+            height: 150px;
+            border: 1px solid lightsalmon;
+            overflow: auto;
         }
     </style>
 </head>
@@ -24,10 +40,11 @@
 <body>
     <button id="position_btn">요소의 위치 정보</button>
     <button id="position_btn2">요소의 위치 변경</button>
-    <p id="text"></p>
+    <button id="position_btn3">요소의 위치 정보2</button>
     <div id="divBox">
         <p id="para">p요소</p>
     </div>
+    <p id="text"></p>
     <script>
         $(function() {
             $("#position_btn").on("click", function() {
@@ -44,6 +61,76 @@
                 str += "left가 " + paraPostion.left + "px이고, "
                 str += "top이 " + paraPostion.top + "px"
                 $("#text").html(str)
+            })
+            $("#position_btn3").on("click", function() {
+                var st = ""
+                var offsetPostion = $("#para").offset()
+                st += "offset() 메소드를 사용하여 구한 p 요소의 위치는<br>"
+                st += "left가 " + offsetPostion.left + "px이고, "
+                st += "top이 " + offsetPostion.top + "px<br>"
+                var posPosition = $("#para").position()
+                st += "position() 메소드를 사용하여 구한 p요소의 위치는 <br>"
+                st += "left가 " + posPosition.left + "px이고, "
+                st += "top이 " + posPosition.top + "px"
+                $("#text").html(st)
+            })
+        })
+    </script>
+
+    <h1>offset()</h1>
+    <p>선택한 요소 집합의 첫 번째 요소의 위치를 HTML 문서를 기준으로 반환</p>
+    <br><br>
+    <h1>position()</h1>
+    <p>선택한 요소가 웹 페이지에 위치할 때 기준이 되었던 <b>부모 요소를 기준</b>으로 하는 상대적인 위치를 반환</p>
+    <br><br>
+    <h1>offsetParent()</h1>
+    <p>기준으로 사용되는 부모요소 확인 <br> 위치가 설정된 요소가 없다면, html 요소를 기준으로 확인</p>
+    <button id="position_btn4">요소의 위치 정보</button>
+    <div class="container">
+		<div>div 요소
+			<ul style="position: relative">ul 요소
+				<li>li 요소</li>
+				<li>li 요소
+					<p id="para2">p 요소 (기준)
+						<span>span 요소</span>
+					</p>
+				</li>
+				<li>li 요소</li>
+			</ul>
+		</div>
+	</div>
+    <script>
+        $(function() {
+            $("#position_btn4").on("click", function() {
+                $("#para2").offsetParent().css("border", "2px solid red")
+            })
+        })
+    </script>
+
+    <h1>scrollLeft()</h1>
+    <p>선택한 요소 집합의 첫번째 요소의 수평 스크롤 바의 현재 위치를 얻거나, 해당 요소의 수평 스크롤 바의 위치를 인수로 전달받은 값으로 설정</p>
+    <h1>scrollTop()</h1>
+    <p>선택한 요소 집합의 첫번째 요소의 수직 스크롤 바의 현재 위치를 얻거나, 해당 요소의 수직 스크롤 바의 위치를 인수로 전달받은 값으로 설정</p>
+    <button id="scroll_btn">스크롤 바의 위치 정보</button>
+    <button id="scroll_btn2">스크롤 바의 위치 설정</button>
+    <p id="text3"></p>
+    <div id="divBox2">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam sequi molestiae natus ab cum inventore impedit, doloremque expedita aliquam quam. Vel culpa ratione distinctio aut eos iusto molestias sapiente explicabo.
+    </div>
+    <script>
+        $(function() {
+            $("#scroll_btn").on("click", function() {
+                var str = "수평 스크롤 바의 현재 위치는 left 방향으로 " + $("#divBox2").scrollLeft() + " px이고<br>"
+                str += "수직 스크롤 바의 현재 위치는 top 방향으로 " + $("#divBox2").scrollTop() + "px"
+                $("#text3").html(str)
+            })
+            $("#scroll_btn2").on("click", function() {
+                $("#divBox2").scrollLeft(70);
+                $("#divBox2").scrollTop(200);
+
+                var str = "수평 스크롤 바의 현재 위치는 left 방향으로 " + $("#divBox2").scrollLeft() + "px이고,<br>"
+                str += "수직 스크롤 바의 현재 위치는 top 방향으로 " + $("#divBox2").scrollTop() + "px"
+                $("#text3").html(str)
             })
         })
     </script>
