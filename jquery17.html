@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>select option detail</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+/>
+  <style>
+
+    * {
+      text-align: center;
+    }
+      h1 {margin-top: 200px;}
+    .formBox .conn_2 .check_box { width:30px; height:30px; vertical-align: middle; background-color:white; border:1px solid #ccc; display:inline-block; margin-right:20px; }
+    .formBox .conn_2 .radio_box { width:30px; height:30px; vertical-align: middle; background-color:white; border:1px solid #ccc; display:inline-block; border-radius:50%; margin-right:20px; }
+    .formBox .conn_2 .add_formd_btn {margin-left: 3px;}
+    .formBox .conn_2 .remove_formd_btn {margin-left: 5px;}
+  </style>
+</head>
+<body>
+  <h1>SELECT OPTION에 따른 상세값 입력</h1>
+  <div class="formBox">
+    <select name="type_select" id="type_select">
+      <option value="">선택</option>
+      <option value="input">input</option>
+      <option value="textarea">textarea</option>
+      <option value="select">select</option>
+      <option value="radio">radio</option>
+      <option value="checkbox">checkbox</option>
+    </select>
+    <div class="conn_2">
+      <div></div>
+    </div>
+  </div>
+
+  <script>
+    $(function(){
+      $("#type_select").change(function(event) {
+        $(".formBox .conn_2 div").html("");
+        plus_form($(this).val());
+      });
+    });
+  
+    $(document).on('click', '.add_formd_btn', function(event) {
+      event.preventDefault();
+      plus_form($("#type_select").val());
+      });
+  
+    $(document).on('click', '.remove_formd_btn', function(event) {
+      event.preventDefault();
+      $(this).parent().remove();
+    });
+  
+    function plus_form(get_type){
+        var type = get_type;
+        var tag = "";
+        var _length = $(".formBox .conn_2").find("p").length;
+        var _class = (_length == 0) ? "add_formd_btn fa-plus-circle" : "remove_formd_btn fa-times";
+        switch(type){
+          case "select":
+            tag += "<p>";
+            tag += "<input type='text'  class='w21'/>";
+            tag += "<i class='fas "+_class+"'></i></p>";
+            tag += "</p>";
+            break;
+          case "checkbox":
+            tag += '<p>';
+            tag += '<span class="check_box"></span>';
+            tag += '<input type="text" class="w21">';
+            tag += '<i class="fas '+_class+'"></i>';
+            tag += '</p>';
+            break;
+          case "radio":
+            tag += '<p>';
+            tag += '<span class="radio_box"></span>';
+            tag += '<input type="text" class="w21">';
+            tag += '<i class="fas '+_class+'"></i>';
+            tag += '</p>';
+            break;
+        }
+        $(".formBox .conn_2 div").append(tag);
+      }
+  
+  </script>
+</body>
+</html>
